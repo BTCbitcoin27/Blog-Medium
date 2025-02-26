@@ -1,0 +1,53 @@
+﻿@model BlogCore.Models.Categoria
+
+@{
+    ViewData["Title"] = "Crear categoria";
+}
+
+<br />
+
+<h3 class="text-center">Crear nueva categoria</h3>
+<form method="post" asp-action="Create">
+    <div class="row px-2 offset-1 border">
+        <div class="col-12">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="col-10 offset-1">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Name" class="form-control" placeholder="Ingresa el nombre de la categoria" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+            <div class="col-10 offset-1">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Order"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Order" class="form-control" placeholder="Ingresa el número de orden" />
+                        <span asp-validation-for="Order" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="form-group row">
+                    <!-- Corregido: "form-group-row" -> "form-group row" -->
+                    <div class="col-8">
+                        <partial name="_CreateBack" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
