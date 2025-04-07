@@ -1,0 +1,54 @@
+﻿@model BlogCore.Models.ViewModels.HomeVM
+
+<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <!-- Carousel Indicators -->
+    <div class="carousel-indicators">
+        @{
+            int indicatorCount = 0;
+        }
+        @foreach (var slider in Model.Sliders.Where(s => s.Estado))
+        {
+            var activeIndicator = indicatorCount == 0 ? "active" : "";
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="@indicatorCount" class="@activeIndicator" aria-current="@(indicatorCount == 0 ? "true" : "false")" aria-label="Slide @(indicatorCount + 1)"></button>
+            indicatorCount++;
+        }
+    </div>
+
+    <!-- Carousel Items -->
+    <div class="carousel-inner rounded shadow">
+        @{
+            int itemCount = 0;
+        }
+        @foreach (var slider in Model.Sliders.Where(s => s.Estado))
+        {
+            var activeItem = itemCount++ == 0 ? "active" : "";
+            <div class="carousel-item @activeItem" data-bs-interval="@(5000 + (itemCount * 500))">
+                <div class="carousel-image-container" style="height: 700px; overflow: hidden;">
+                    <img src="@Url.Content(slider.UrlImage)" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="@slider.Nombre">
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="bg-dark bg-opacity-75 p-2 rounded">
+                        <h2 class="text-white fs-4 mb-0">@Html.Raw(slider.Nombre)</h2>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Navigation Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var myCarousel = document.getElementById('carouselExampleDark');
+        var carousel = new bootstrap.Carousel(myCarousel);
+    });
+</script>

@@ -1,48 +1,71 @@
-﻿@model BlogCore.Models.Articulo
+﻿@model BlogCore.Models.ViewModels.ArticuloVM
 
 @{
-    ViewData["Title"] = "Crear categoria";
+    ViewData["Title"] = "Crear Articulo";
 }
 
 <br />
-
-<h3 class="text-center">Crear nuevo articulo</h3>
-<form method="post" asp-action="Create">
+<br />
+<h3 class="text-center">Crear un nuevo Artículo</h3>
+<form method="POST" asp-action="Create" enctype="multipart/form-data">
     <div class="row px-2 offset-1 border">
-        <div class="col-12">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="col-10 offset-1">
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Title"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Title" class="form-control" placeholder="Ingresa el nombre de la categoria" />
-                        <span asp-validation-for="Title" class="text-danger"></span>
-                    </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="col-10 offset-1 mt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Articulo.Title"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Articulo.Title" class="form-control" placeholder="Ingresa el nombre" />
+                    <span asp-validation-for="Articulo.Title" class="text-danger"></span>
                 </div>
             </div>
-            <br /><br />
-            <div class="col-10 offset-1">
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Description"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Description" class="form-control" placeholder="Ingresa el número de orden" />
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
+
+            <br />
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Articulo.Description"></label>
                 </div>
-                <br />
-                <br />
-                <div class="form-group row">
-                    <!-- Corregido: "form-group-row" -> "form-group row" -->
-                    <div class="col-8">
-                        <partial name="_CreateBack" />
-                    </div>
+                <div class="col-8">
+                    <textarea asp-for="Articulo.Description" class="form-control" style="height: 300px;"></textarea>
+                    <span asp-validation-for="Articulo.Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label for="Categoría">Categoría</label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Articulo.CategoriaId, Model.ListaCategorias,
+                             "-Por favor seleccione una categoría-", new { @class = "form-control" })
+                    <span asp-validation-for="Articulo.CategoriaId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Articulo.UrlImagen"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="archivos" id="subidaArchivo" class="form-control" />
+                    <span asp-validation-for="Articulo.UrlImagen" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="form-group-row">
+                <div class="col-8">
+                    <partial name="_CreateBack" />
                 </div>
             </div>
         </div>
+
     </div>
 </form>
 
@@ -50,4 +73,13 @@
     @{
         <partial name="_ValidationScriptsPartial" />
     }
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js" integrity="sha512-VCEWnpOl7PIhbYMcb64pqGZYez41C2uws/M/mDdGPy+vtEJHd9BqbShE4/VNnnZdr7YCPOjd+CBmYca/7WWWCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists',
+            menubar: 'file edit format'
+        });
+    </script>
 }

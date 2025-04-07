@@ -15,8 +15,14 @@ function cargarDatatable() {
         "columns": [
             { "data": "id", "width": "5%" },
             { "data": "title", "width": "20%" },
-            { "data": "categoria.name", "width": "20%" },
-            { "data": "creationDate", "width": "27%" },
+            { "data": "categoria.name", "width": "15%" },
+            {
+                "data": "urlImagen",
+                "render": function (imagen) {
+                    return `<img src="../${imagen}" width="120">`
+                }
+            },
+            { "data": "createDate", "width": "30%" },
             {
                 "data": "id",
                 "render": function (data) {
