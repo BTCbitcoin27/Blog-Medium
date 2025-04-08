@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogCore", "BlogCore.csproj", "{1A6344BC-114F-4E35-827E-2A5FEE7735EF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D013FE8-B448-4CCB-8FA5-5C1A50D8AF7B} = {0D013FE8-B448-4CCB-8FA5-5C1A50D8AF7B}
+		{D5CB33F5-1CBB-4890-AB06-9B1A8D35CD5C} = {D5CB33F5-1CBB-4890-AB06-9B1A8D35CD5C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogCoreDataAccess", "..\BlogCoreDataAccess\BlogCoreDataAccess.csproj", "{81EFD91C-C4F4-4BEE-9E8D-0AE64EFA6EE3}"
 EndProject
@@ -41,5 +45,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06082975-0FC0-4066-80D6-E960B3EA4CA1}
 	EndGlobalSection
 EndGlobal
