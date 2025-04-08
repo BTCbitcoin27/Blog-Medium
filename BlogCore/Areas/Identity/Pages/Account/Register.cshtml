@@ -61,7 +61,7 @@
             </div>
 
             <!--Autorización-->
-               @if (User.IsInRole(CNT.Administrador))
+                @if (User.IsInRole(CNT.Administrador))
             {  
                 <!--Selector de Roles-->
                 <div class="form-group row">
@@ -71,7 +71,7 @@
                         <input type="radio" name="radUsuarioRole" value="@CNT.Registrado" /> @CNT.Registrado
                     </div>
                 </div>
-               }  
+                }  
 
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registro</button>
         </form>
